@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SNSサイト</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+  </head>
+
+  <body>
+    <header style="background-color: #0044aa; padding: 10px;">
+      <% if user_signed_in? %>
+        <%= link_to '新規投稿', new_post_path, style: "color:white; margin-right:15px;" %>
+        <%= link_to '投稿一覧', posts_path, style: "color:white; margin-right:15px;" %>
+        <%= link_to 'マイページ', mypage_path(current_user), style: "color:white; margin-right:15px;" %>
+        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, style: "color:white;" %>
+      <% else %>
+        <%= link_to 'サインアップ', new_user_registration_path, style: "color:white; margin-right:15px;" %>
+        <%= link_to 'ログイン', new_user_session_path, style: "color:white;" %>
+      <% end %>
+    </header>
+
+    <%= yield %>
+  </body>
+</html>
