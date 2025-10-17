@@ -1,0 +1,17 @@
+<h1>マイページ</h1>
+
+<div class="mypage">
+  <% if @user.icon.attached? %>
+    <%= image_tag @user.icon, size: "600x600" %>
+  <% else %>
+    <%= image_tag "NoImage.png", size: "600x600" %>
+  <% end %>
+
+  <h2><%= @user.name %></h2>
+
+  <div class="actions">
+    <%= link_to "ユーザー情報を編集", edit_user_path(@user), class: "btn btn-secondary" %>
+    <%= link_to "投稿一覧へ", posts_path, class: "btn btn-primary" %>
+    <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-danger" %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<h1>ユーザー編集</h1>
+
+<%= form_with model: @user, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "名前" %><br>
+    <%= f.text_field :name, class: "form-control", maxlength: 20, required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :icon, "アイコン画像" %><br>
+    <%= f.file_field :icon, class: "form-control" %>
+  </div>
+
+  <% if @user.icon.attached? %>
+    <p>現在のアイコン：</p>
+    <%= image_tag @user.icon.variant(resize_to_fill: [600, 600]) %>
+  <% else %>
+    <p>現在のアイコン：NoImage.png</p>
+    <%= image_tag "NoImage.png", size: "600x600" %>
+  <% end %>
+
+  <%= f.submit "更新する", class: "btn btn-success mt-3" %>
+<% end %>
+
+<%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-secondary mt-3" %>
