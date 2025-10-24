@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kadai7</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header style="background-color: #ffcc00; padding: 10px;">
+      <% if logged_in? %>
+        <%= link_to '新規投稿', new_post_path, style: "color:white; margin-right:15px;" %>
+        <%= link_to '投稿一覧', posts_path, style: "color:white; margin-right:15px;" %>
+        <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, style: "color:white;" %>
+      <% else %>
+        <%= link_to 'サインアップ', new_user_path, style: "color:white; margin-right:15px;" %>
+        <%= link_to 'ログイン', login_path, style: "color:white;" %>
+      <% end %>
+    </header>
+
+    <%= yield %>
+  </body>
+</html>
